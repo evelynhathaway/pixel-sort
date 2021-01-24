@@ -55,10 +55,10 @@ const App: React.FC = () => {
 	return (
 		<div>
 			<div className={classes.flexContainer}>
-				<Paper elevation={3} className={classes.card}>
+				<Paper elevation={8} className={classes.card}>
 					<img alt="Original" ref={imageRef} onLoad={handleLoad} className={classes.image} />
 				</Paper>
-				<Paper elevation={3} className={classes.card}>
+				<Paper elevation={8} className={classes.card}>
 					<canvas ref={canvasRef} className={classes.image} />
 				</Paper>
 			</div>
