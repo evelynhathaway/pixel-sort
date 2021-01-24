@@ -1,12 +1,15 @@
+import {SortBy} from "./color";
 import {Direction} from "./pixels";
 import {sort} from "./sort";
 
 
 export const render = (
-	{imageData, direction, canvasElement, canvasContext}:
+	{imageData, sortBy, direction, reversed, canvasElement, canvasContext}:
 	{
 		imageData: ImageData;
+		sortBy: SortBy
 		direction: Direction;
+		reversed: boolean;
 		canvasElement: HTMLCanvasElement | null;
 		canvasContext: CanvasRenderingContext2D | null;
 	}
@@ -18,7 +21,7 @@ export const render = (
 		// Paint a frame with the cleared canvas
 		requestAnimationFrame(() => {
 			// Paint the sorted image
-			canvasContext.putImageData(sort(imageData, "lightness", direction, true), 0, 0);
+			canvasContext.putImageData(sort(imageData, sortBy, direction, reversed), 0, 0);
 		});
 	}
 };

@@ -1,10 +1,10 @@
 // eslint-disable-next-line import/no-unresolved
 import Worker from "worker-loader!./offscreen-canvas.worker";
-import {Direction} from "./pixels";
 import {render} from "./render";
+import {sort} from "./sort";
 
 
-export type RenderTrigger = (imageData: ImageData, direction: Direction) => void;
+export type RenderTrigger = (...args: Parameters<typeof sort>) => void;
 
 export const setUpCanvas = function (
 	{current: canvasElement}: React.RefObject<HTMLCanvasElement>,
@@ -23,10 +23,10 @@ export const setUpCanvas = function (
 		canvasContext = canvasElement.getContext("2d");
 	}
 
-	const renderHandoff: RenderTrigger = function (imageData, direction) {
+	const renderHandoff: RenderTrigger = function (imageData, sortBy, direction, reversed) {
 		// Call render function in worker or on the main thread
-		hasOffscreen ? worker.postMessage({imageData, direction}) :
-			render({imageData, direction, canvasElement, canvasContext});
+		hasOffscreen ? worker.postMessage({imageData, sortBy, direction, reversed}) :
+			render({imageData, sortBy, direction, reversed, canvasElement, canvasContext});
 	};
 
 	return renderHandoff;

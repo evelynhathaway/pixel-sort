@@ -1,10 +1,10 @@
-import {Color} from "./color";
+import {SortBy} from "./color";
 import {Direction, getImageDataFromPixels, getPixelsFromImageData} from "./pixels";
 
 
 export const sort = (
 	imageData: ImageData,
-	property: keyof Color,
+	sortBy: SortBy,
 	direction: Direction,
 	reverse: boolean
 ): ImageData => {
@@ -13,8 +13,8 @@ export const sort = (
 		array => array.sort(
 			(colorA, colorB) => (
 				reverse ?
-					colorB[property] - colorA[property] :
-					colorA[property] - colorB[property]
+					colorB[sortBy] - colorA[sortBy] :
+					colorA[sortBy] - colorB[sortBy]
 			)
 		)
 	);

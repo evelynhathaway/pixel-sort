@@ -1,17 +1,23 @@
+export type SortBy = keyof Color;
+
 export class Color {
 	public red: number;
 	public green: number;
 	public blue: number;
 	public alpha: number;
+	public rgba: number;
+	public rgb: number;
 
 	constructor (red: number, green: number, blue: number, alpha: number) {
 		this.red = red;
 		this.green = green;
 		this.blue = blue;
 		this.alpha = alpha;
+		this.rgb = red + green + blue;
+		this.rgba = this.rgb + alpha;
 	}
 
-	get hue (): number {
+	public get hue (): number {
 		const red = this.red / 255;
 		const green = this.green / 255;
 		const blue = this.blue / 255;
@@ -39,7 +45,7 @@ export class Color {
 		return hue;
 	}
 
-	get lightness (): number {
+	public get lightness (): number {
 		const red = this.red / 255;
 		const green = this.green / 255;
 		const blue = this.blue / 255;
@@ -49,7 +55,7 @@ export class Color {
 		return (min + max) * 50;
 	}
 
-	get saturation (): number {
+	public get saturation (): number {
 		const red = this.red / 255;
 		const green = this.green / 255;
 		const blue = this.blue / 255;

@@ -1,6 +1,7 @@
 import React, {useRef, useEffect, useState} from "react";
-import {FormControl, InputLabel, MenuItem, Paper, Select} from "@material-ui/core";
+import {FormControl, FormControlLabel, InputLabel, MenuItem, Paper, Select, Switch, SwitchProps} from "@material-ui/core";
 import {SelectInputProps} from "@material-ui/core/Select/SelectInput";
+import {SortBy} from "../utils/color";
 import {Direction} from "../utils/pixels";
 import {RenderTrigger, setUpCanvas} from "../utils/setup-canvas";
 import classes from "./App.module.scss";
@@ -11,6 +12,8 @@ const App: React.FC = () => {
 	const imageRef = useRef<HTMLImageElement>(null);
 	const renderTriggerRef = useRef<RenderTrigger>();
 	const [direction, setDirection] = useState<Direction>("vertical");
+	const [sortBy, setSortBy] = useState<SortBy>("lightness");
+	const [reversed, setReversed] = useState<boolean>(false);
 	const [imageData, setImageData] = useState<ImageData>();
 
 	// Setup canvas on first render
@@ -41,11 +44,13 @@ const App: React.FC = () => {
 
 	useEffect(() => {
 		if (imageData) {
-			renderTriggerRef.current?.(imageData, direction);
+			renderTriggerRef.current?.(imageData, sortBy, direction, reversed);
 		}
-	}, [imageData, direction]);
+	}, [imageData, sortBy, direction, reversed]);
 
 	const handleDirectionChange: SelectInputProps<Direction>["onChange"] = (event) => setDirection(event.target.value);
+	const handleSortByChange: SelectInputProps<SortBy>["onChange"] = (event) => setSortBy(event.target.value);
+	const handleReversedChange: SwitchProps["onChange"] = (event, checked) => setReversed(checked);
 
 	return (
 		<div>
@@ -57,20 +62,36 @@ const App: React.FC = () => {
 					<canvas ref={canvasRef} className={classes.image} />
 				</Paper>
 			</div>
+
 			<input type="file" accept="image/*" onChange={handleFileChange} />
+
 			<FormControl>
-				<InputLabel id="demo-simple-select-filled-label">Direction</InputLabel>
-				<Select
-					labelId="demo-simple-select-filled-label"
-					id="demo-simple-select-filled"
-					value={direction}
-					onChange={handleDirectionChange}
-				>
+				<InputLabel id="sort-by-label">Sort By</InputLabel>
+				<Select labelId="sort-by-label" value={sortBy} onChange={handleSortByChange}>
+					<MenuItem value="hue">Hue</MenuItem>
+					<MenuItem value="saturation">Saturation</MenuItem>
+					<MenuItem value="lightness">Lightness</MenuItem>
+					<MenuItem value="red">Red</MenuItem>
+					<MenuItem value="green">Green</MenuItem>
+					<MenuItem value="blue">Blue</MenuItem>
+					<MenuItem value="alpha">Alpha</MenuItem>
+					<MenuItem value="rgb">RGB Summation</MenuItem>
+					<MenuItem value="rgba">RGBA Summation</MenuItem>
+				</Select>
+			</FormControl>
+
+			<FormControl>
+				<InputLabel id="direction-input-label">Direction</InputLabel>
+				<Select labelId="direction-input-label" value={direction} onChange={handleDirectionChange}>
 					<MenuItem value="horizontal">Horizontal</MenuItem>
 					<MenuItem value="vertical">Vertical</MenuItem>
 				</Select>
 			</FormControl>
 
+			<FormControlLabel
+				label="Reversed"
+				control={<Switch checked={reversed} onChange={handleReversedChange} />}
+			/>
 		</div>
 	);
 };
