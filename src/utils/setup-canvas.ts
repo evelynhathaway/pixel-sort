@@ -1,10 +1,10 @@
 // eslint-disable-next-line import/no-unresolved
 import Worker from "worker-loader!./offscreen-canvas.worker";
 import {render} from "./render";
-import {sort} from "./sort";
+import {sortImage} from "./sort";
 
 
-export type RenderTrigger = (...args: Parameters<typeof sort>) => void;
+export type RenderTrigger = (...args: Parameters<typeof sortImage>) => void;
 
 export const setUpCanvas = function (
 	{current: canvasElement}: React.RefObject<HTMLCanvasElement>,

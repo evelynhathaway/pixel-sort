@@ -1,4 +1,4 @@
-export type SortBy = keyof Color;
+export type ColorProps = keyof Color;
 
 export class Color {
 	public red: number;

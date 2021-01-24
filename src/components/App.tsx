@@ -1,7 +1,7 @@
 import React, {useRef, useEffect, useState} from "react";
 import {FormControl, FormControlLabel, InputLabel, MenuItem, Paper, Select, Switch, SwitchProps} from "@material-ui/core";
 import {SelectInputProps} from "@material-ui/core/Select/SelectInput";
-import {SortBy} from "../utils/color";
+import {ColorProps} from "../utils/color";
 import {Direction} from "../utils/pixels";
 import {RenderTrigger, setUpCanvas} from "../utils/setup-canvas";
 import classes from "./App.module.scss";
@@ -12,7 +12,7 @@ const App: React.FC = () => {
 	const imageRef = useRef<HTMLImageElement>(null);
 	const renderTriggerRef = useRef<RenderTrigger>();
 	const [direction, setDirection] = useState<Direction>("vertical");
-	const [sortBy, setSortBy] = useState<SortBy>("lightness");
+	const [sortBy, setSortBy] = useState<ColorProps>("lightness");
 	const [reversed, setReversed] = useState<boolean>(false);
 	const [imageData, setImageData] = useState<ImageData>();
 
@@ -49,7 +49,7 @@ const App: React.FC = () => {
 	}, [imageData, sortBy, direction, reversed]);
 
 	const handleDirectionChange: SelectInputProps<Direction>["onChange"] = (event) => setDirection(event.target.value);
-	const handleSortByChange: SelectInputProps<SortBy>["onChange"] = (event) => setSortBy(event.target.value);
+	const handleSortByChange: SelectInputProps<ColorProps>["onChange"] = (event) => setSortBy(event.target.value);
 	const handleReversedChange: SwitchProps["onChange"] = (event, checked) => setReversed(checked);
 
 	return (
