@@ -3,32 +3,41 @@ import {Color} from "./color";
 
 export type Pixels1D = Array<Color>;
 export type Pixels2D = Array<Pixels1D>;
+export type Direction = "horizontal" | "vertical";
 
-export const getPixelsFromImageData = (imageData: ImageData): Pixels2D => {
-	// eslint-disable-next-line unicorn/no-null
-	const pixels: Pixels2D = new Array(imageData.height).fill(null).map(() => []);
+export const getPixelsFromImageData = (imageData: ImageData, direction: Direction): Pixels2D => {
+	const pixels: Pixels2D = new Array(
+		direction === "horizontal" ? imageData.height : imageData.width
+		// eslint-disable-next-line unicorn/no-null
+	).fill(null).map(() => []);
 
 	for (let index = 0; index < imageData.data.length; index += 4) {
 		const pixelIndex = index / 4;
 		const row = Math.floor(pixelIndex / imageData.width);
-		pixels[row].push(new Color(
+		const column = pixelIndex % imageData.width;
+		const pixel = new Color(
 			imageData.data[index],
 			imageData.data[index + 1],
 			imageData.data[index + 2],
 			imageData.data[index + 3],
-		));
+		);
+		if (direction === "horizontal") {
+			pixels[row][column] = pixel;
+		} else {
+			pixels[column][row] = pixel;
+		}
 	}
 	return pixels;
 };
 
-export const getImageDataFromPixels = (pixels: Pixels2D): ImageData => {
-	const height = pixels.length;
-	const width = pixels[0].length;
+export const getImageDataFromPixels = (pixels: Pixels2D, direction: Direction): ImageData => {
+	const height = direction === "horizontal" ? pixels.length : pixels[0].length;
+	const width = direction === "horizontal" ? pixels[0].length : pixels.length;
 	const data: Array<number> = [];
 
-	for (const row of pixels) {
-		for (const pixel of row) {
-			data.push(...pixel);
+	for (let row = 0; row < height; row++) {
+		for (let column = 0; column < width; column++) {
+			data.push(...(direction === "horizontal" ? pixels[row][column] : pixels[column][row]));
 		}
 	}
 

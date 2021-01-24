@@ -1,0 +1,16 @@
+.flexContainer {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-gap: 12px;
+	gap: 12px;
+	margin: 12px;
+
+	.card {
+		overflow: hidden;
+	}
+	.image {
+		display: block;
+		width: 100%;
+		image-rendering: pixelated;
+	}
+}
