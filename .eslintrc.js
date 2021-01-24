@@ -27,5 +27,6 @@ module.exports = {
 
 	"rules": {
 		"unicorn/no-null": "off",
+		"react/prop-types": "off",
 	},
 };

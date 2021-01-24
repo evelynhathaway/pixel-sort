@@ -7,15 +7,17 @@
 
 	.card {
 		overflow: hidden;
-		border-radius: 12px;
 		margin: 24px;
 	}
 	.image {
 		display: block;
 		max-height: 80vh;
 		min-width: 300px;
-		min-width: #{"min(300px, 100%)"};
 		max-width: 100%;
 		image-rendering: pixelated;
 	}
+}
+
+.hidden {
+	display: none;
 }

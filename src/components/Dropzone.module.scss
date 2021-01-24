@@ -1,0 +1,22 @@
+.Dropzone {
+	min-height: calc(100vh - 48px);
+	box-sizing: border-box;
+	margin: 24px;
+	padding: 24px;
+	border: 24px dashed #BE3256;
+	transition: background-color 0.2s ease, border 0.2s ease;
+	background-color: rgba(255, 218, 227, 0.5);
+	display: flex;
+    width: calc(100vw - 48px);
+
+	&.isDragActive {
+		border: 28px dashed #5DA78B;
+		background-color: rgba(203, 243, 227, 0.5);
+	}
+
+	.message {
+		margin: 1rem;
+		font-size: 1.25rem;
+		font-weight: 700;
+	}
+}
