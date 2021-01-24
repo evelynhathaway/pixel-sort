@@ -8,7 +8,6 @@ export type Direction = "horizontal" | "vertical";
 export const getPixelsFromImageData = (imageData: ImageData, direction: Direction): Pixels2D => {
 	const pixels: Pixels2D = new Array(
 		direction === "horizontal" ? imageData.height : imageData.width
-		// eslint-disable-next-line unicorn/no-null
 	).fill(null).map(() => []);
 
 	for (let index = 0; index < imageData.data.length; index += 4) {

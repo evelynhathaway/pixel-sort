@@ -1,5 +1,3 @@
-/* eslint-disable unicorn/no-abusive-eslint-disable */
-/* eslint-disable */
 // eslint-disable-next-line import/no-unresolved
 import Worker from "worker-loader!./offscreen-canvas.worker";
 import {render} from "./render";

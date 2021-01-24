@@ -4,13 +4,9 @@ import {RenderTrigger, setUpCanvas} from "../utils/setup-canvas";
 import classes from "./App.module.scss";
 
 
-
 const App: React.FC = () => {
-	// eslint-disable-next-line unicorn/no-null
 	const canvasRef = useRef<HTMLCanvasElement>(null);
-	// eslint-disable-next-line unicorn/no-null
 	const imageRef = useRef<HTMLImageElement>(null);
-	// eslint-disable-next-line unicorn/no-null
 	const renderTriggerRef = useRef<RenderTrigger>();
 
 	// Setup canvas on first render

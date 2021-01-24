@@ -15,6 +15,7 @@ export const render = (
 		canvasElement.width = imageData.width;
 		// Paint a frame with the cleared canvas
 		requestAnimationFrame(() => {
+			// Paint the sorted image
 			canvasContext.putImageData(sort(imageData, "lightness", "vertical", true), 0, 0);
 		});
 	}
