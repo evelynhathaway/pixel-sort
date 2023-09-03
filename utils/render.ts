@@ -7,7 +7,7 @@ export const render = (
 	{imageData, sortBy, direction, reversed, canvasElement, canvasContext}:
 	{
 		imageData: ImageData;
-		sortBy: ColorProps
+		sortBy: ColorProps;
 		direction: Direction;
 		reversed: boolean;
 		canvasElement: HTMLCanvasElement | null;

@@ -1,0 +1,54 @@
+@use "sass:map";
+@use "../styles/palette.scss";
+
+.icon {
+	border-radius: 4px;
+	width: 96px;
+}
+
+.background,
+.squareOne,
+.squareTwo,
+.squareThree,
+.squareFour,
+.squareFive,
+.squareSix {
+	transition: fill var(--theme-transition-duration) var(--theme-transition-timing-function);
+}
+
+@each $colorName,
+$colorPalette in palette.$palettes {
+	.#{$colorName} {
+		.background {
+			fill: map.get($colorPalette, 200);
+
+			@media (prefers-color-scheme: dark) {
+				fill: map.get($colorPalette, 100);
+			}
+		}
+
+		.squareOne {
+			fill: map.get($colorPalette, 950);
+		}
+
+		.squareTwo {
+			fill: map.get($colorPalette, 900);
+		}
+
+		.squareThree {
+			fill: map.get($colorPalette, 850);
+		}
+
+		.squareFour {
+			fill: map.get($colorPalette, 800);
+		}
+
+		.squareFive {
+			fill: map.get($colorPalette, 700);
+		}
+
+		.squareSix {
+			fill: map.get($colorPalette, 600);
+		}
+	}
+}

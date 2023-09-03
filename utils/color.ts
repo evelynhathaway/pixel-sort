@@ -1,4 +1,14 @@
-export type ColorProps = keyof Color;
+export const hexToRgb = (hex: string) => {
+	const result = /^#?(?<red>[\da-f]{2})(?<green>[\da-f]{2})(?<blue>[\da-f]{2})$/i.exec(hex);
+	if (!result?.groups) throw new Error("Input is not a long form RGB hex string.");
+	return {
+		red: Number.parseInt(result.groups.red, 16),
+		green: Number.parseInt(result.groups.green, 16),
+		blue: Number.parseInt(result.groups.blue, 16),
+	};
+};
+
+export type ColorProps = Extract<keyof Color, string>;
 
 export class Color {
 	public red: number;
@@ -26,14 +36,25 @@ export class Color {
 		const delta = max - min;
 		let hue: number;
 
-		if (max === min) {
-			hue = 0;
-		} else if (red === max) {
-			hue = (green - blue) / delta;
-		} else if (green === max) {
-			hue = 2 + (blue - red) / delta;
-		} else {
-			hue = 4 + (red - green) / delta;
+		switch (max) {
+			case min: {
+				hue = 0;
+
+				break;
+			}
+			case red: {
+				hue = (green - blue) / delta;
+
+				break;
+			}
+			case green: {
+				hue = 2 + (blue - red) / delta;
+
+				break;
+			}
+			default: {
+				hue = 4 + (red - green) / delta;
+			}
 		}
 
 		hue = Math.min(hue * 60, 360);

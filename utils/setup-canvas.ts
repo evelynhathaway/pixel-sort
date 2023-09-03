@@ -3,7 +3,6 @@ import Worker from "worker-loader!./offscreen-canvas.worker";
 import {render} from "./render";
 import {sortImage} from "./sort";
 
-
 export type RenderTrigger = (...args: Parameters<typeof sortImage>) => void;
 
 let worker: Worker;

@@ -2,7 +2,6 @@ import {ColorProps} from "./color";
 import {Interval, makeIntervals, Threshold} from "./intervals";
 import {Direction, getImageDataFromPixels, getPixelsFromImageData, Pixels1D} from "./pixels";
 
-
 export const sortPixels = (
 	pixels: Pixels1D,
 	sortBy: ColorProps,

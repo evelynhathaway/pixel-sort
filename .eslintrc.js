@@ -5,12 +5,14 @@ module.exports = {
 
 	"extends": [
 		"plugin:evelyn/default",
+		"plugin:evelyn/typescript",
 		"plugin:evelyn/react",
+		"next",
+		"next/core-web-vitals",
 	],
 
 	"ignorePatterns": [
-		"lib",
-		"coverage",
+		"next-env.d.ts",
 	],
 
 	"overrides": [
@@ -23,10 +25,11 @@ module.exports = {
 				"plugin:evelyn/typescript",
 			],
 		},
+		{
+			"files": "**/*.mjs",
+			"extends": [
+				"plugin:evelyn/esm",
+			],
+		},
 	],
-
-	"rules": {
-		"unicorn/no-null": "off",
-		"react/prop-types": "off",
-	},
 };

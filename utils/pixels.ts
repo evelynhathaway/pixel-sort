@@ -1,13 +1,12 @@
 import {Color} from "./color";
 
-
 export type Pixels1D = Array<Color>;
 export type Pixels2D = Array<Pixels1D>;
 export type Direction = "horizontal" | "vertical";
 
 export const getPixelsFromImageData = (imageData: ImageData, direction: Direction): Pixels2D => {
-	const pixels: Pixels2D = new Array(
-		direction === "horizontal" ? imageData.height : imageData.width
+	const pixels: Pixels2D = Array.from(
+		{length: direction === "horizontal" ? imageData.height : imageData.width},
 	).fill(null).map(() => []);
 
 	for (let index = 0; index < imageData.data.length; index += 4) {

@@ -1,0 +1,15 @@
+.header {
+	position: fixed;
+	inset-block-start: 48px;
+	inset-inline-start: 48px;
+	display: inline-flex;
+	align-items: center;
+	gap: 2rem;
+	user-select: none;
+}
+
+.text {
+	font-size: 2.5rem;
+	margin: 0;
+	letter-spacing: -0.05ch;
+}

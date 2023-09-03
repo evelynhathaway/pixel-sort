@@ -1,0 +1,24 @@
+@use "sass:map";
+@use "../styles/palette.scss";
+
+.body {
+	--theme-transition-duration: 0.8s;
+	--theme-transition-timing-function: ease;
+	transition: color var(--theme-transition-duration) var(--theme-transition-timing-function);
+}
+
+.isRotating {
+	--theme-transition-duration: 5s;
+	--theme-transition-timing-function: linear;
+}
+
+@each $colorName,
+$colorPalette in palette.$palettes {
+	.#{$colorName} {
+		color: map.get($colorPalette, 950);
+
+		@media (prefers-color-scheme: dark) {
+			color: map.get($colorPalette, 100);
+		}
+	}
+}

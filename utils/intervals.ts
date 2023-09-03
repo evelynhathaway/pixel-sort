@@ -28,7 +28,7 @@ export const makeIntervals = (pixels: Pixels1D, thresholds: Array<Threshold>): A
 	for (const pixel of pixels) {
 		const meetsThreshold = checkThresholds(pixel, thresholds);
 		if (meetsThreshold === didMeetThreshold) {
-			intervals[intervals.length - 1].pixels.push(pixel);
+			intervals.at(-1)?.pixels.push(pixel);
 		} else {
 			intervals.push({
 				sort: meetsThreshold,
