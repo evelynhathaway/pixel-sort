@@ -10,7 +10,7 @@
 .transparencyBackground::after {
 	position: fixed;
 	inset: 0;
-	z-index: -1;
+	z-index: -10;
 	transition: var(--theme-transition-duration) var(--theme-transition-timing-function);
 }
 
