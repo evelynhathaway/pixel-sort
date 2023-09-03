@@ -18,7 +18,7 @@ export type Palette = Omit<ReadonlyMap<ColorCodes, `#${string}`>, "get"> & {
 	get(key: ColorCodes): `#${string}`;
 };
 
-export const grayscale: Palette = new Map([
+export const grayscale = new Map([
 	["50", "#F3F3F3"],
 	["100", "#E1E1E1"],
 	["200", "#D0D0D0"],
@@ -32,9 +32,9 @@ export const grayscale: Palette = new Map([
 	["850", "#4D4D4D"],
 	["900", "#393939"],
 	["950", "#1D1D1D"],
-]);
+]) as Palette;
 
-export const slate: Palette = new Map([
+export const slate = new Map([
 	["50", "#F2F4F6"],
 	["100", "#DCE2E8"],
 	["200", "#C8D1DA"],
@@ -48,9 +48,9 @@ export const slate: Palette = new Map([
 	["850", "#3F4F5F"],
 	["900", "#2E3A46"],
 	["950", "#171D23"],
-]);
+]) as Palette;
 
-export const silver: Palette = new Map([
+export const silver = new Map([
 	["50", "#F3F3F4"],
 	["100", "#E1E1E2"],
 	["200", "#CFD0D2"],
@@ -64,9 +64,9 @@ export const silver: Palette = new Map([
 	["850", "#4C4D51"],
 	["900", "#38393C"],
 	["950", "#1D1D1E"],
-]);
+]) as Palette;
 
-export const cocoa: Palette = new Map([
+export const cocoa = new Map([
 	["50", "#F7F3F1"],
 	["100", "#E9DFDA"],
 	["200", "#DCCDC5"],
@@ -80,9 +80,9 @@ export const cocoa: Palette = new Map([
 	["850", "#61473A"],
 	["900", "#48352B"],
 	["950", "#241B16"],
-]);
+]) as Palette;
 
-export const latte: Palette = new Map([
+export const latte = new Map([
 	["50", "#F9F2EE"],
 	["100", "#EFDED3"],
 	["200", "#E6CBBA"],
@@ -96,9 +96,9 @@ export const latte: Palette = new Map([
 	["850", "#6D4328"],
 	["900", "#50321D"],
 	["950", "#29190F"],
-]);
+]) as Palette;
 
-export const dragonfruit: Palette = new Map([
+export const dragonfruit = new Map([
 	["50", "#FDF0F7"],
 	["100", "#FAD8EA"],
 	["200", "#F7C1DD"],
@@ -112,9 +112,9 @@ export const dragonfruit: Palette = new Map([
 	["850", "#941356"],
 	["900", "#6F0E40"],
 	["950", "#3B0822"],
-]);
+]) as Palette;
 
-export const grape: Palette = new Map([
+export const grape = new Map([
 	["50", "#F7F1FC"],
 	["100", "#EADCF8"],
 	["200", "#DDC8F4"],
@@ -128,9 +128,9 @@ export const grape: Palette = new Map([
 	["850", "#6823B2"],
 	["900", "#4E1A85"],
 	["950", "#290E46"],
-]);
+]) as Palette;
 
-export const plum: Palette = new Map([
+export const plum = new Map([
 	["50", "#F1F3FD"],
 	["100", "#DBE0FB"],
 	["200", "#C7CEF8"],
@@ -144,9 +144,9 @@ export const plum: Palette = new Map([
 	["850", "#1935D2"],
 	["900", "#13289D"],
 	["950", "#0A1553"],
-]);
+]) as Palette;
 
-export const blueberry: Palette = new Map([
+export const blueberry = new Map([
 	["50", "#EDF4FD"],
 	["100", "#D0E3F9"],
 	["200", "#B5D3F6"],
@@ -160,9 +160,9 @@ export const blueberry: Palette = new Map([
 	["850", "#124D90"],
 	["900", "#0D396B"],
 	["950", "#071D37"],
-]);
+]) as Palette;
 
-export const cottonCandy: Palette = new Map([
+export const cottonCandy = new Map([
 	["50", "#E8F6FB"],
 	["100", "#C2E7F5"],
 	["200", "#9DD9EF"],
@@ -176,9 +176,9 @@ export const cottonCandy: Palette = new Map([
 	["850", "#12536B"],
 	["900", "#0D3E50"],
 	["950", "#072029"],
-]);
+]) as Palette;
 
-export const taffy: Palette = new Map([
+export const taffy = new Map([
 	["50", "#E3F8FA"],
 	["100", "#B0EBF0"],
 	["200", "#80DFE8"],
@@ -192,9 +192,9 @@ export const taffy: Palette = new Map([
 	["850", "#11555B"],
 	["900", "#0D3F44"],
 	["950", "#062022"],
-]);
+]) as Palette;
 
-export const mint: Palette = new Map([
+export const mint = new Map([
 	["50", "#EBF6EE"],
 	["100", "#CBE8D2"],
 	["200", "#ADDBB9"],
@@ -208,9 +208,9 @@ export const mint: Palette = new Map([
 	["850", "#265732"],
 	["900", "#1C4025"],
 	["950", "#0F2113"],
-]);
+]) as Palette;
 
-export const lime: Palette = new Map([
+export const lime = new Map([
 	["50", "#E5FAD6"],
 	["100", "#B7F18D"],
 	["200", "#87E842"],
@@ -224,9 +224,9 @@ export const lime: Palette = new Map([
 	["850", "#2A570B"],
 	["900", "#204108"],
 	["950", "#102104"],
-]);
+]) as Palette;
 
-export const banana: Palette = new Map([
+export const banana = new Map([
 	["50", "#FFF3CC"],
 	["100", "#FFDF76"],
 	["200", "#FFC918"],
@@ -240,9 +240,9 @@ export const banana: Palette = new Map([
 	["850", "#614A00"],
 	["900", "#483700"],
 	["950", "#251C00"],
-]);
+]) as Palette;
 
-export const mango: Palette = new Map([
+export const mango = new Map([
 	["50", "#FDF2E9"],
 	["100", "#F9DCC3"],
 	["200", "#F5C8A0"],
@@ -256,9 +256,9 @@ export const mango: Palette = new Map([
 	["850", "#773E0C"],
 	["900", "#582E09"],
 	["950", "#2D1805"],
-]);
+]) as Palette;
 
-export const orange: Palette = new Map([
+export const orange = new Map([
 	["50", "#FEF1EA"],
 	["100", "#FCDBC8"],
 	["200", "#FAC5A6"],
@@ -272,9 +272,9 @@ export const orange: Palette = new Map([
 	["850", "#843507"],
 	["900", "#622705"],
 	["950", "#331403"],
-]);
+]) as Palette;
 
-export const strawberry: Palette = new Map([
+export const strawberry = new Map([
 	["50", "#FFF0F0"],
 	["100", "#FFD8D9"],
 	["200", "#FFC1C2"],
@@ -288,9 +288,9 @@ export const strawberry: Palette = new Map([
 	["850", "#9F0003"],
 	["900", "#790002"],
 	["950", "#440001"],
-]);
+]) as Palette;
 
-export const palette = {
+export const palettes = {
 	grayscale,
 	slate,
 	silver,
@@ -310,4 +310,4 @@ export const palette = {
 	strawberry,
 };
 
-export type ColorName = keyof typeof palette;
+export type ColorName = keyof typeof palettes;

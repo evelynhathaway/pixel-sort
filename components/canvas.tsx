@@ -7,7 +7,7 @@ import Vibrant from "node-vibrant";
 import QuickPinchZoom, {make3dTransformValue} from "react-quick-pinch-zoom";
 import {useImage} from "../contexts/image";
 import {useTheme} from "../contexts/theme";
-import {palette} from "../styles/palette";
+import {palettes} from "../styles/palette";
 import {Color} from "../utils/color";
 
 export const Canvas = () => {
@@ -35,9 +35,9 @@ export const Canvas = () => {
 					return;
 				}
 				const vibrantColor = new Color(...vibrantSwatch.rgb);
-				const [[imageTheme]] = Object.entries(palette)
+				const [[imageTheme]] = Object.entries(palettes)
 					.map(([theme, palette]) => [
-						theme,
+						theme as keyof typeof palettes,
 						Math.abs(
 							new Color(palette.get("500")).hue - vibrantColor.hue
 						),
@@ -46,7 +46,7 @@ export const Canvas = () => {
 						return hueDiffA - hueDiffB;
 					});
 
-				setTheme?.(imageTheme as keyof typeof palette);
+				setTheme?.(imageTheme);
 			}
 		})();
 	}, [image, setTheme]);

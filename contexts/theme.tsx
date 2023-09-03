@@ -1,7 +1,7 @@
 "use client";
 
 import React, {useContext, useEffect, useRef, useState} from "react";
-import {palette, type Palette, type ColorName} from "../styles/palette";
+import {palettes, type Palette, type ColorName} from "../styles/palette";
 
 const defaultTheme = "dragonfruit";
 
@@ -28,7 +28,7 @@ const ThemeContext = React.createContext<{
 	setIsRotating?: React.Dispatch<boolean>;
 }>({
 	theme: defaultTheme,
-	palette: palette[defaultTheme],
+	palette: palettes[defaultTheme],
 	isRotating: false,
 });
 
@@ -67,7 +67,7 @@ export const ThemeContextProvider = (props: ThemeContextProviderProps) => {
 			value={{
 				theme,
 				setTheme,
-				palette: palette[theme],
+				palette: palettes[theme],
 				isRotating,
 				setIsRotating,
 			}}
