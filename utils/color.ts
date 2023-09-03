@@ -18,13 +18,22 @@ export class Color {
 	public rgba: number;
 	public rgb: number;
 
-	constructor (red: number, green: number, blue: number, alpha: number) {
-		this.red = red;
-		this.green = green;
-		this.blue = blue;
+	constructor (hex: string);
+	constructor (red: number, green: number, blue: number, alpha?: number);
+	constructor (redOrHex: number | string, green: number = 0, blue: number = 0, alpha: number = 255) {
+		if (typeof redOrHex === "string") {
+			const {red, green, blue} = hexToRgb(redOrHex);
+			this.red = red;
+			this.green = green;
+			this.blue = blue;
+		} else {
+			this.red = redOrHex;
+			this.green = green;
+			this.blue = blue;
+		}
 		this.alpha = alpha;
-		this.rgb = red + green + blue;
-		this.rgba = this.rgb + alpha;
+		this.rgb = this.red + this.green + this.blue;
+		this.rgba = this.rgb + this.alpha;
 	}
 
 	public get hue (): number {

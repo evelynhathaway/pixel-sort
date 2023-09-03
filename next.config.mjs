@@ -8,7 +8,7 @@ export default {
 			test: /\.worker\.js$/,
 			loader: "worker-loader",
 			options: {
-				name: "static/[hash].worker.js",
+				filename: "static/[chunkhash].worker.js",
 				publicPath: "/_next/",
 			},
 		});

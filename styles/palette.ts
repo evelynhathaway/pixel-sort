@@ -14,7 +14,9 @@ type ColorCodes = (
 	"950"
 );
 
-export type Palette = Map<ColorCodes, `#${string}`>;
+export type Palette = Omit<ReadonlyMap<ColorCodes, `#${string}`>, "get"> & {
+	get(key: ColorCodes): `#${string}`;
+};
 
 export const grayscale: Palette = new Map([
 	["50", "#F3F3F3"],

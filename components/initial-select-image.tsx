@@ -1,24 +1,33 @@
 "use client";
 
-import {useCallback, useRef} from "react";
+import {useCallback, useEffect, useRef} from "react";
 import clsx from "clsx";
+import {useRouter} from "next/navigation";
 import {mergeProps} from "react-aria";
 import {useDropzone} from "react-dropzone";
+import {useImage} from "../contexts/image";
+import {useTheme} from "../contexts/theme";
 import {useTransitionHeightAuto} from "../hooks/use-transition-height-auto";
 import {useTransitionInOut} from "../hooks/use-transition-in-out";
 import {Button} from "./button";
 import styles from "./initial-select-image.module.scss";
 
 export default function InitialSelectImage () {
-	const imageRef = useRef<HTMLImageElement>(null);
+	const {setImage} = useImage();
+	const {isRotating, setIsRotating} = useTheme();
 	const instructionsRef = useRef<HTMLDivElement>(null);
+	const router = useRouter();
+
+	useEffect(() => {
+		if (!isRotating) {
+			setIsRotating?.(true);
+		}
+	}, [isRotating, setIsRotating]);
 
 	const onDrop = useCallback(([file]: Array<File>) => {
-		const image = imageRef.current;
-		if (file && image) {
-			image.src = URL.createObjectURL(file);
-		}
-	}, [imageRef]);
+		setImage?.(file);
+		router.push("/sort");
+	}, [setImage, router]);
 
 	const {getRootProps, getInputProps, isDragActive} = useDropzone({
 		onDrop,
