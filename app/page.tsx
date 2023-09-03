@@ -1,5 +1,7 @@
-export default function Home () {
+import InitialSelectImage from "../components/initial-select-image";
+
+export default function HomePage () {
 	return (
-		<main />
+		<InitialSelectImage />
 	);
 }

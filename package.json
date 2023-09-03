@@ -54,8 +54,10 @@
 		"clsx": "^2.0.0",
 		"next": "13.4.19",
 		"react": "^18.2.0",
+		"react-aria": "^3.27.0",
 		"react-dom": "^18.2.0",
-		"react-dropzone": "^14.2.3"
+		"react-dropzone": "^14.2.3",
+		"react-quick-pinch-zoom": "^4.9.0"
 	},
 	"devDependencies": {
 		"@sass-fairy/url": "^1.0.1",

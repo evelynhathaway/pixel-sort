@@ -30,7 +30,9 @@ export default function RootLayout (props: RootLayoutProps) {
 			<ThemeContextProvider>
 				<ThemedBody>
 					<Header />
-					{children}
+					<main>
+						{children}
+					</main>
 					<TransparencyBackground />
 				</ThemedBody>
 			</ThemeContextProvider>

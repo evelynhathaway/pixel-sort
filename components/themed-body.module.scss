@@ -1,10 +1,12 @@
 @use "sass:map";
+@use "sass:color";
 @use "../styles/palette.scss";
 
 .body {
 	--theme-transition-duration: 0.8s;
 	--theme-transition-timing-function: ease;
 	transition: color var(--theme-transition-duration) var(--theme-transition-timing-function);
+	margin: 0;
 }
 
 .isRotating {
@@ -17,8 +19,50 @@ $colorPalette in palette.$palettes {
 	.#{$colorName} {
 		color: map.get($colorPalette, 950);
 
+		--current-palette-color-scheme-50: #{map.get($colorPalette, 50)};
+		--current-palette-color-scheme-100: #{map.get($colorPalette, 100)};
+		--current-palette-color-scheme-200: #{map.get($colorPalette, 200)};
+		--current-palette-color-scheme-300: #{map.get($colorPalette, 300)};
+		--current-palette-color-scheme-400: #{map.get($colorPalette, 400)};
+		--current-palette-color-scheme-500: #{map.get($colorPalette, 500)};
+		--current-palette-color-scheme-600: #{map.get($colorPalette, 600)};
+		--current-palette-color-scheme-700: #{map.get($colorPalette, 700)};
+		--current-palette-color-scheme-750: #{map.get($colorPalette, 750)};
+		--current-palette-color-scheme-800: #{map.get($colorPalette, 800)};
+		--current-palette-color-scheme-850: #{map.get($colorPalette, 850)};
+		--current-palette-color-scheme-900: #{map.get($colorPalette, 900)};
+		--current-palette-color-scheme-950: #{map.get($colorPalette, 950)};
+
+		--elevation-2: 0 12px 32px 12px #{color.change(map.get($colorPalette, 950), $alpha: 0.1)},
+		0 4px 4px #{color.change(map.get($colorPalette, 950), $alpha: 0.1)};
+		--elevation-3: 0 12px 48px 12px #{color.change(map.get($colorPalette, 950), $alpha: 0.1)},
+		0 8px 12px #{color.change(map.get($colorPalette, 950), $alpha: 0.2)};
+		--tint: 2px solid rgba(255, 255, 255, 0.4);
+		--shade: 2px solid #{color.change(map.get($colorPalette, 950), $alpha: 0.2)};
+
 		@media (prefers-color-scheme: dark) {
 			color: map.get($colorPalette, 100);
+
+			--current-palette-color-scheme-50: #{map.get($colorPalette, 950)};
+			--current-palette-color-scheme-100: #{map.get($colorPalette, 900)};
+			--current-palette-color-scheme-200: #{map.get($colorPalette, 850)};
+			--current-palette-color-scheme-300: #{map.get($colorPalette, 800)};
+			--current-palette-color-scheme-400: #{map.get($colorPalette, 750)};
+			--current-palette-color-scheme-500: #{map.get($colorPalette, 700)};
+			--current-palette-color-scheme-600: #{map.get($colorPalette, 600)};
+			--current-palette-color-scheme-700: #{map.get($colorPalette, 500)};
+			--current-palette-color-scheme-750: #{map.get($colorPalette, 400)};
+			--current-palette-color-scheme-800: #{map.get($colorPalette, 300)};
+			--current-palette-color-scheme-850: #{map.get($colorPalette, 200)};
+			--current-palette-color-scheme-900: #{map.get($colorPalette, 100)};
+			--current-palette-color-scheme-950: #{map.get($colorPalette, 50)};
+
+			--elevation-2: 0 12px 32px 12px #{color.change(map.get($colorPalette, 50), $alpha: 0.1)},
+			0 4px 4px #{color.change(map.get($colorPalette, 50), $alpha: 0.1)};
+			--elevation-3: 0 12px 48px 12px #{color.change(map.get($colorPalette, 50), $alpha: 0.1)},
+			0 8px 12px #{color.change(map.get($colorPalette, 50), $alpha: 0.2)};
+			--tint: 2px solid rgba(255, 255, 255, 0.2);
+			--shade: 2px solid #{color.change(map.get($colorPalette, 950), $alpha: 0.4)};
 		}
 	}
 }
