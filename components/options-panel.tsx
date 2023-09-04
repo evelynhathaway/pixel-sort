@@ -25,18 +25,14 @@ const getDirectionFromSortStartingFrom = (sortStartingFrom: SortStartingFrom) =>
 
 	if (sortStartingFrom === "top" || sortStartingFrom === "bottom") {
 		direction = "vertical";
-	}
-	if (sortStartingFrom === "left" || sortStartingFrom === "right") {
+	} else {
 		direction = "horizontal";
 	}
 	if (sortStartingFrom === "top" || sortStartingFrom === "left") {
 		reversed = false;
-	}
-	if (sortStartingFrom === "bottom" || sortStartingFrom === "right") {
+	} else {
 		reversed = true;
 	}
-
-	throw new Error("Invalid sort starting from value");
 
 	return {
 		direction,
