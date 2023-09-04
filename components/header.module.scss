@@ -13,4 +13,10 @@
 	font-size: 2.5rem;
 	margin: 0;
 	letter-spacing: -0.05ch;
+	opacity: 1;
+	transition: opacity 0.2s ease;
+}
+
+.hidden {
+	opacity: 0;
 }
