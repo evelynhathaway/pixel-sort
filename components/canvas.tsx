@@ -26,11 +26,16 @@ export const Canvas = () => {
 	const [imageData, setImageData] = useState<ImageData>();
 	const {canvasElementRef, direction, reversed, sortBy, threshold} = useSort();
 	const [showOriginal, setShowOriginal] = useState(false);
-
 	const {cancellableLongPressAndHoldProps, cancelHold} = useCancellableLongPressAndHold(
 		() => setShowOriginal(true),
 		() => setShowOriginal(false),
 	);
+
+	const render = useCallback(() => {
+		if (imageData) {
+			renderTriggerRef.current?.(imageData, sortBy, direction, reversed, [{property: "alpha", min: 255, max: 255}, threshold]);
+		}
+	}, [imageData, direction, reversed, sortBy, threshold]);
 
 	// Setup canvas on first render
 	useEffect(() => {
@@ -38,6 +43,20 @@ export const Canvas = () => {
 			renderTriggerRef.current = setUpCanvas(canvasElementRef);
 		}
 	}, [canvasElementRef]);
+
+	useEffect(() => {
+		const canvasElement = canvasElementRef.current;
+		if (canvasElement) {
+			canvasElement?.addEventListener("contextrestored", render);
+			return () => {
+				canvasElement.removeEventListener("contextrestored", render);
+			};
+		}
+	}, [canvasElementRef, render]);
+
+	useEffect(() => {
+		render();
+	}, [render]);
 
 	const handleLoad: React.ReactEventHandler<HTMLImageElement> = (event) => {
 		const canvasElement = document.createElement("canvas");
@@ -51,12 +70,6 @@ export const Canvas = () => {
 		}
 		canvasElement.remove();
 	};
-
-	useEffect(() => {
-		if (imageData) {
-			renderTriggerRef.current?.(imageData, sortBy, direction, reversed, [{property: "alpha", min: 255, max: 255}, threshold]);
-		}
-	}, [imageData, direction, reversed, sortBy, threshold]);
 
 	useEffect(() => {
 		if (!image) {
