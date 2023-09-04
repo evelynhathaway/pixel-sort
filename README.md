@@ -28,6 +28,19 @@ This pixel sorting project is an Next.js application with offscreen canvas suppo
   - RGB, RGBA Summation
 - Offscreen canvas support
 
+## Examples
+
+![Seattle skyline at night with glitch effect](examples/sorted-seattle.jpg)
+
+![Trees in a forest with glitch effect](examples/sorted-forest.png)
+
+## Screenshots
+
+| Light Mode                                                                           | Dark Mode                                                                          |
+| ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
+| ![Screenshot of the homepage in light mode](.github/screenshot-home-light.png)       | ![Screenshot of the homepage in dark mode](.github/screenshot-home-dark.png)       |
+| ![Photograph of a fox being sorted in light mode](.github/screenshot-sort-light.png) | ![Photograph of a fox being sorted in dark mode](.github/screenshot-sort-dark.png) |
+
 ## Usage
 
 ```bash
@@ -36,12 +49,6 @@ cd pixel-sort
 npm clean-install
 npm dev
 ```
-
-## Examples
-
-![Seattle skyline at night with glitch effect](examples/sorted-seattle.jpg)
-
-![Trees in a forest with glitch effect](examples/sorted-forest.png)
 
 ## License
 
