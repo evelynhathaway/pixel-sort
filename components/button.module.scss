@@ -1,0 +1,29 @@
+.button {
+	appearance: none;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+	color: inherit;
+	font-family: inherit;
+	transition: background-color var(--theme-transition-duration) var(--theme-transition-timing-function), border var(--theme-transition-duration) var(--theme-transition-timing-function), box-shadow 0.2s ease;
+}
+
+.promoted {
+	padding: 1rem;
+	border-radius: 16px;
+	font-size: inherit;
+	font-weight: inherit;
+	background-color: var(--current-palette-color-scheme-400);
+	border-top: var(--tint);
+	border-bottom: var(--shade);
+	box-shadow: var(--elevation-2);
+}
+
+.promoted {
+
+	&:hover,
+	&:focus {
+		box-shadow: var(--elevation-3);
+		background-color: var(--current-palette-color-scheme-300);
+	}
+}

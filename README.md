@@ -15,7 +15,7 @@
 
 Sort pixels in an image by certain the properties of each pixel to smear a nice glitch effect over your photos.
 
-This pixel sorting project is an React.js application with offscreen canvas support.
+This pixel sorting project is an Next.js application with offscreen canvas support.
 
 ## Features
 
@@ -33,8 +33,8 @@ This pixel sorting project is an React.js application with offscreen canvas supp
 ```bash
 git clone git@github.com:evelynhathaway/pixel-sort.git
 cd pixel-sort
-npm install
-npm start
+npm clean-install
+npm dev
 ```
 
 ## Examples

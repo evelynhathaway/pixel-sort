@@ -1,0 +1,39 @@
+@use "sass:map";
+@use "@sass-fairy/url";
+@use "../styles/palette.scss";
+
+.transparencyBackground {
+	opacity: 0.3;
+}
+
+.transparencyBackground,
+.transparencyBackground::after {
+	position: fixed;
+	inset: 0;
+	z-index: -10;
+	transition: var(--theme-transition-duration) var(--theme-transition-timing-function);
+}
+
+.transparencyBackground::after {
+	content: "";
+	mask: 0 / 24px url.svg('<svg viewBox="0 0 2 2"><path d="M1 2V0h1v1H0v1z" /></svg>');
+}
+
+@each $colorName,
+$colorPalette in palette.$palettes {
+	.#{$colorName} {
+		background-color: map.get($colorPalette, 100);
+
+		&::after {
+			background-color: map.get($colorPalette, 300);
+		}
+
+		@media (prefers-color-scheme: dark) {
+			background-color: map.get($colorPalette, 900);
+
+			&::after {
+				background-color: map.get($colorPalette, 950);
+			}
+		}
+	}
+}

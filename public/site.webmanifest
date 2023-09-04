@@ -1,0 +1,22 @@
+{
+	"name": "Pixel Sort",
+	"short_name": "Pixel Sort",
+	"start_url": "/",
+	"display": "standalone",
+	"orientation": "any",
+	"background_color": "#FFFFFF",
+	"theme_color": "#EE77B4",
+	"icons": [
+		{
+			"src": "/icon.svg",
+			"type": "image/svg+xml",
+			"sizes": "any"
+		}
+	],
+	"description": "Liven your photos with a glitch effect",
+	"lang": "en",
+	"categories": [
+		"photo",
+		"utilities"
+	]
+}

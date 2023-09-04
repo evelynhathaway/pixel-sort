@@ -1,0 +1,64 @@
+$margin: 1rem;
+
+.initialSelectImage {
+	display: flex;
+	margin: $margin;
+	width: calc(100% - #{2 * $margin});
+	min-height: calc(100vh - #{2 * $margin});
+	min-height: calc(100svh - #{2 * $margin});
+	border: $margin dashed transparent;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	font-size: 2rem;
+	font-weight: 700;
+	user-select: none;
+	flex-direction: column;
+	transition: border 0.2s ease;
+}
+
+.isDragActive {
+	border: $margin dashed var(--current-palette-color-scheme-400);
+}
+
+.instructions {
+	flex-direction: column;
+	gap: 1rem;
+	transition: margin 0.3s ease, height 0.3s ease, opacity 0.2s ease, clip-path 0.3s ease;
+	margin-bottom: 1rem;
+}
+
+.instructions,
+.instructionsShown {
+	display: flex;
+}
+
+.instructions,
+.instructionsTransitionIn {
+	opacity: 1;
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.instructionsTransitionOut {
+	opacity: 0;
+	margin-bottom: 0;
+	clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+}
+
+.buttonTextWrapper {
+	position: relative;
+}
+
+.buttonText {
+	opacity: 1;
+	transition: opacity 0.2s ease;
+
+	&.hidden {
+		opacity: 0;
+	}
+}
+
+.buttonTextOverlay {
+	position: absolute;
+	inset: 0;
+}
