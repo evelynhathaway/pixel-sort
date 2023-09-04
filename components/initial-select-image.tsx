@@ -5,7 +5,7 @@ import clsx from "clsx";
 import {useRouter} from "next/navigation";
 import {mergeProps} from "react-aria";
 import {useDropzone} from "react-dropzone";
-import {useImage} from "../contexts/image";
+import {useOriginalImage} from "../contexts/original-image";
 import {useTheme} from "../contexts/theme";
 import {useTransitionHeightAuto} from "../hooks/use-transition-height-auto";
 import {useTransitionInOut} from "../hooks/use-transition-in-out";
@@ -13,7 +13,7 @@ import {Button} from "./button";
 import styles from "./initial-select-image.module.scss";
 
 export default function InitialSelectImage () {
-	const {setImage} = useImage();
+	const {setOriginalImage} = useOriginalImage();
 	const {isRotating, setIsRotating} = useTheme();
 	const instructionsRef = useRef<HTMLDivElement>(null);
 	const router = useRouter();
@@ -25,9 +25,9 @@ export default function InitialSelectImage () {
 	}, [isRotating, setIsRotating]);
 
 	const onDrop = useCallback(([file]: Array<File>) => {
-		setImage?.(file);
+		setOriginalImage?.(file);
 		router.push("/sort");
-	}, [setImage, router]);
+	}, [setOriginalImage, router]);
 
 	const {getRootProps, getInputProps, isDragActive} = useDropzone({
 		onDrop,

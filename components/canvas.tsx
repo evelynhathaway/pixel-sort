@@ -6,7 +6,8 @@ import clsx from "clsx";
 import {useRouter} from "next/navigation";
 import Vibrant from "node-vibrant";
 import QuickPinchZoom, {make3dTransformValue} from "react-quick-pinch-zoom";
-import {useImage} from "../contexts/image";
+import {useOriginalImage} from "../contexts/original-image";
+import {useSort} from "../contexts/sort";
 import {useTheme} from "../contexts/theme";
 import {useCancellableLongPressAndHold} from "../hooks/use-cancellable-long-press-and-hold";
 import {palettes} from "../styles/palette";
@@ -15,15 +16,15 @@ import {RenderTrigger, setUpCanvas} from "../utils/setup-canvas";
 import styles from "./canvas.module.scss";
 
 export const Canvas = () => {
-	const {image} = useImage();
+	const {originalImage: image} = useOriginalImage();
 	const lastImageRef = useRef<File>();
 	const {isRotating, setIsRotating, setTheme} = useTheme();
 	const imageContainerElementRef = useRef<HTMLDivElement>(null);
 	const imageElementRef = useRef<HTMLImageElement>(null);
-	const canvasElementRef = useRef<HTMLCanvasElement>(null);
 	const router = useRouter();
 	const renderTriggerRef = useRef<RenderTrigger>();
 	const [imageData, setImageData] = useState<ImageData>();
+	const {canvasElementRef, direction, reversed, sortBy, threshold} = useSort();
 	const [showOriginal, setShowOriginal] = useState(false);
 
 	const {cancellableLongPressAndHoldProps, cancelHold} = useCancellableLongPressAndHold(
@@ -36,7 +37,7 @@ export const Canvas = () => {
 		if (!renderTriggerRef.current) {
 			renderTriggerRef.current = setUpCanvas(canvasElementRef);
 		}
-	}, []);
+	}, [canvasElementRef]);
 
 	const handleLoad: React.ReactEventHandler<HTMLImageElement> = (event) => {
 		const canvasElement = document.createElement("canvas");
@@ -46,16 +47,16 @@ export const Canvas = () => {
 			canvasElement.height = image.naturalHeight;
 			canvasElement.width = image.naturalWidth;
 			canvasContext.drawImage(image, 0, 0);
-			setImageData(canvasContext.getImageData(0, 0, canvasElement.width, canvasElement.height));
+			setImageData?.(canvasContext.getImageData(0, 0, canvasElement.width, canvasElement.height));
 		}
 		canvasElement.remove();
 	};
 
 	useEffect(() => {
 		if (imageData) {
-			renderTriggerRef.current?.(imageData, "lightness", "vertical", false);
+			renderTriggerRef.current?.(imageData, sortBy, direction, reversed, [{property: "alpha", min: 255, max: 255}, threshold]);
 		}
-	}, [imageData]);
+	}, [imageData, direction, reversed, sortBy, threshold]);
 
 	useEffect(() => {
 		if (!image) {

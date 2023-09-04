@@ -3,7 +3,7 @@ import type {Metadata} from "next";
 import {Header} from "../components/header";
 import {ThemedBody} from "../components/themed-body";
 import {TransparencyBackground} from "../components/transparency-background";
-import {ImageContextProvider} from "../contexts/image";
+import {OriginalImageContextProvider} from "../contexts/original-image";
 import {ThemeContextProvider} from "../contexts/theme";
 import {dragonfruit} from "../styles/palette";
 
@@ -32,9 +32,9 @@ export default function RootLayout (props: RootLayoutProps) {
 				<ThemedBody>
 					<Header />
 					<main>
-						<ImageContextProvider>
+						<OriginalImageContextProvider>
 							{children}
-						</ImageContextProvider>
+						</OriginalImageContextProvider>
 					</main>
 					<TransparencyBackground />
 				</ThemedBody>

@@ -17,13 +17,12 @@ export const sortPixels = (
 	return pixels;
 };
 
-const thresholds: Array<Threshold> = [{property: "alpha", min: 255, max: 255}];
-
 export const sortImage = (
 	imageData: ImageData,
 	sortBy: ColorProps,
 	direction: Direction,
-	reverse: boolean
+	reverse: boolean,
+	thresholds: Array<Threshold>,
 ): ImageData => {
 	return getImageDataFromPixels(
 		getPixelsFromImageData(imageData, direction)

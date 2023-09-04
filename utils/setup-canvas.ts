@@ -25,10 +25,10 @@ export const setUpCanvas = function (
 		canvasContext = canvasElement.getContext("2d");
 	}
 
-	const renderHandoff: RenderTrigger = function (imageData, sortBy, direction, reversed) {
+	const renderHandoff: RenderTrigger = function (imageData, sortBy, direction, reversed, thresholds) {
 		// Call render function in worker or on the main thread
-		hasOffscreen ? worker.postMessage({imageData, sortBy, direction, reversed}) :
-			render({imageData, sortBy, direction, reversed, canvasElement, canvasContext});
+		hasOffscreen ? worker.postMessage({imageData, sortBy, direction, reversed, thresholds}) :
+			render({imageData, sortBy, direction, reversed, thresholds, canvasElement, canvasContext});
 	};
 
 	return renderHandoff;

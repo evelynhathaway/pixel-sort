@@ -24,5 +24,6 @@
 	&:hover,
 	&:focus {
 		box-shadow: var(--elevation-3);
+		background-color: var(--current-palette-color-scheme-300);
 	}
 }

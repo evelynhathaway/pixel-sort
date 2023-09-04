@@ -40,6 +40,10 @@ $colorPalette in palette.$palettes {
 		--tint: 2px solid rgba(255, 255, 255, 0.4);
 		--shade: 2px solid #{color.change(map.get($colorPalette, 950), $alpha: 0.2)};
 
+		--modal-background: #{color.change(map.get($colorPalette, 200), $alpha: 0.5)};
+		--modal-elevation: 12px 0 48px 12px #{color.change(map.get($colorPalette, 950), $alpha: 0.2)},
+		8px 0 12px #{color.change(map.get($colorPalette, 950), $alpha: 0.6)};
+
 		@media (prefers-color-scheme: dark) {
 			color: map.get($colorPalette, 100);
 
@@ -63,6 +67,10 @@ $colorPalette in palette.$palettes {
 			0 8px 12px #{color.change(map.get($colorPalette, 50), $alpha: 0.2)};
 			--tint: 2px solid rgba(255, 255, 255, 0.2);
 			--shade: 2px solid #{color.change(map.get($colorPalette, 950), $alpha: 0.4)};
+
+			--modal-background: #{color.change(map.get($colorPalette, 850), $alpha: 0.5)};
+			--modal-elevation: 12px 0 48px 12px #{color.change(map.get($colorPalette, 50), $alpha: 0.2)},
+			8px 0 12px #{color.change(map.get($colorPalette, 50), $alpha: 0.6)};
 		}
 	}
 }
