@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/no-unresolved
-import Worker from "worker-loader!./offscreen-canvas.worker";
+import Worker from "./offscreen-canvas.worker";
 import {render} from "./render";
 import {sortImage} from "./sort";
 

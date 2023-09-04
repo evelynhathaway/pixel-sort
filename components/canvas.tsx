@@ -1,21 +1,61 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import React, {useCallback, useEffect, useRef} from "react";
+import React, {useCallback, useEffect, useRef, useState} from "react";
+import clsx from "clsx";
 import {useRouter} from "next/navigation";
 import Vibrant from "node-vibrant";
 import QuickPinchZoom, {make3dTransformValue} from "react-quick-pinch-zoom";
 import {useImage} from "../contexts/image";
 import {useTheme} from "../contexts/theme";
+import {useCancellableLongPressAndHold} from "../hooks/use-cancellable-long-press-and-hold";
 import {palettes} from "../styles/palette";
 import {Color} from "../utils/color";
+import {RenderTrigger, setUpCanvas} from "../utils/setup-canvas";
+import styles from "./canvas.module.scss";
 
 export const Canvas = () => {
 	const {image} = useImage();
 	const lastImageRef = useRef<File>();
 	const {isRotating, setIsRotating, setTheme} = useTheme();
+	const imageContainerElementRef = useRef<HTMLDivElement>(null);
 	const imageElementRef = useRef<HTMLImageElement>(null);
+	const canvasElementRef = useRef<HTMLCanvasElement>(null);
 	const router = useRouter();
+	const renderTriggerRef = useRef<RenderTrigger>();
+	const [imageData, setImageData] = useState<ImageData>();
+	const [showOriginal, setShowOriginal] = useState(false);
+
+	const {cancellableLongPressAndHoldProps, cancelHold} = useCancellableLongPressAndHold(
+		() => setShowOriginal(true),
+		() => setShowOriginal(false),
+	);
+
+	// Setup canvas on first render
+	useEffect(() => {
+		if (!renderTriggerRef.current) {
+			renderTriggerRef.current = setUpCanvas(canvasElementRef);
+		}
+	}, []);
+
+	const handleLoad: React.ReactEventHandler<HTMLImageElement> = (event) => {
+		const canvasElement = document.createElement("canvas");
+		const canvasContext = canvasElement.getContext("2d");
+		if (canvasContext) {
+			const image = event.currentTarget;
+			canvasElement.height = image.naturalHeight;
+			canvasElement.width = image.naturalWidth;
+			canvasContext.drawImage(image, 0, 0);
+			setImageData(canvasContext.getImageData(0, 0, canvasElement.width, canvasElement.height));
+		}
+		canvasElement.remove();
+	};
+
+	useEffect(() => {
+		if (imageData) {
+			renderTriggerRef.current?.(imageData, "lightness", "vertical", false);
+		}
+	}, [imageData]);
 
 	useEffect(() => {
 		if (!image) {
@@ -55,21 +95,29 @@ export const Canvas = () => {
 		if (isRotating) setIsRotating?.(false);
 	}, [isRotating, setIsRotating]);
 
-	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const onUpdate = useCallback(({x, y, scale}: {x: number; y: number; scale: number}) => {
-		if (canvasRef.current) {
+		if (imageContainerElementRef.current) {
 			const value = make3dTransformValue({x, y, scale});
 
-			canvasRef.current.style.setProperty("transform", value);
+			imageContainerElementRef.current.style.setProperty("transform", value);
 		}
 	}, []);
 
-	return (
-		<>
-			<img ref={imageElementRef} alt="Original" />
-			<QuickPinchZoom onUpdate={onUpdate}>
-				<canvas ref={canvasRef} />
-			</QuickPinchZoom>
-		</>
-	);
+	return image ? (
+		<QuickPinchZoom
+			onUpdate={onUpdate}
+			shouldInterceptWheel={() => false}
+			enforceBoundsDuringZoom
+			onDragStart={cancelHold}
+		>
+			<div
+				ref={imageContainerElementRef}
+				className={clsx(styles.imageContainer, showOriginal && styles.showOriginal)}
+				{...cancellableLongPressAndHoldProps}
+			>
+				<img className={styles.image} ref={imageElementRef} onLoad={handleLoad} alt="Original" />
+				<canvas className={styles.canvas} ref={canvasElementRef} aria-label="Sorted" />
+			</div>
+		</QuickPinchZoom>
+	) : null;
 };
