@@ -5,14 +5,14 @@ import clsx from "clsx";
 import {useRouter} from "next/navigation";
 import {mergeProps} from "react-aria";
 import {useDropzone} from "react-dropzone";
-import {useOriginalImage} from "../contexts/original-image";
-import {useTheme} from "../contexts/theme";
-import {useTransitionHeightAuto} from "../hooks/use-transition-height-auto";
-import {useTransitionInOut} from "../hooks/use-transition-in-out";
-import {Button} from "./button";
+import {useOriginalImage} from "../contexts/original-image.tsx";
+import {useTheme} from "../contexts/theme.tsx";
+import {useTransitionHeightAuto} from "../hooks/use-transition-height-auto.ts";
+import {useTransitionInOut} from "../hooks/use-transition-in-out.ts";
+import {Button} from "./button.tsx";
 import styles from "./initial-select-image.module.scss";
 
-export default function InitialSelectImage () {
+export const InitialSelectImage = () => {
 	const {setOriginalImage} = useOriginalImage();
 	const {isRotating, setIsRotating} = useTheme();
 	const instructionsRef = useRef<HTMLDivElement>(null);
@@ -24,7 +24,7 @@ export default function InitialSelectImage () {
 		}
 	}, [isRotating, setIsRotating]);
 
-	const onDrop = useCallback(([file]: Array<File>) => {
+	const onDrop = useCallback(([file]: File[]) => {
 		setOriginalImage?.(file);
 		router.push("/sort");
 	}, [setOriginalImage, router]);
@@ -79,4 +79,4 @@ export default function InitialSelectImage () {
 			</Button>
 		</div>
 	);
-}
+};

@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import {useTheme} from "../contexts/theme";
+import {useTheme} from "../contexts/theme.tsx";
 import styles from "./transparency-background.module.scss";
 
 export const TransparencyBackground = () => {

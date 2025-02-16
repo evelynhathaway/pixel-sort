@@ -1,7 +1,7 @@
 "use client";
 
 import React, {useContext, useEffect, useRef, useState} from "react";
-import {palettes, type Palette, type ColorName} from "../styles/palette";
+import {palettes, type Palette, type ColorName} from "../styles/palette.ts";
 
 const defaultTheme = "dragonfruit";
 
@@ -41,7 +41,7 @@ export const ThemeContextProvider = (props: ThemeContextProviderProps) => {
 	const [theme, setTheme] = useState<ColorName>(defaultTheme);
 
 	const [isRotating, setIsRotating] = useState(true);
-	const rotatingIntervalRef = useRef<number | undefined>();
+	const rotatingIntervalRef = useRef<number>(undefined);
 	const lastRotatedThemeIndexRef = useRef(0);
 	useEffect(() => {
 		if (isRotating && !rotatingIntervalRef.current) {

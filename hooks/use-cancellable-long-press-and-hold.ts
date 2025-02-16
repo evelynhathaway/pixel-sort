@@ -9,11 +9,11 @@ import {useRef} from "react";
 export const useCancellableLongPressAndHold = (
 	onLongPressAndHold: () => void,
 	onLongPressAndHoldEnd: () => void,
-	threshold: number = 300,
+	threshold = 300,
 ) => {
 	const isPressedRef = useRef(false);
 	const isLongPressAndHeldRef = useRef(false);
-	const timeoutRef = useRef<number>();
+	const timeoutRef = useRef<number>(undefined);
 
 	const cancelHold = () => {
 		clearTimeout(timeoutRef.current);

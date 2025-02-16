@@ -1,8 +1,8 @@
 "use client";
 
 import clsx from "clsx";
-import {useTheme} from "../contexts/theme";
-import {hexToRgb} from "../utils/color";
+import {useTheme} from "../contexts/theme.tsx";
+import {hexToRgb} from "../utils/color.ts";
 import styles from "./icon.module.scss";
 
 export const Icon = () => {

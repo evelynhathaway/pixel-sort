@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 import {Manrope} from "next/font/google";
-import {useTheme} from "../contexts/theme";
+import {useTheme} from "../contexts/theme.tsx";
 import styles from "./themed-body.module.scss";
 
 const manrope = Manrope({subsets: ["latin"]});

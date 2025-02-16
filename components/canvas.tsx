@@ -4,25 +4,25 @@
 import React, {useCallback, useEffect, useRef, useState} from "react";
 import clsx from "clsx";
 import {useRouter} from "next/navigation";
-import Vibrant from "node-vibrant";
+import {Vibrant} from "node-vibrant/browser";
 import QuickPinchZoom, {make3dTransformValue} from "react-quick-pinch-zoom";
-import {useOriginalImage} from "../contexts/original-image";
-import {useSort} from "../contexts/sort";
-import {useTheme} from "../contexts/theme";
-import {useCancellableLongPressAndHold} from "../hooks/use-cancellable-long-press-and-hold";
-import {palettes} from "../styles/palette";
-import {Color} from "../utils/color";
-import {RenderTrigger, setUpCanvas} from "../utils/setup-canvas";
+import {useOriginalImage} from "../contexts/original-image.tsx";
+import {useSort} from "../contexts/sort.tsx";
+import {useTheme} from "../contexts/theme.tsx";
+import {useCancellableLongPressAndHold} from "../hooks/use-cancellable-long-press-and-hold.ts";
+import {palettes} from "../styles/palette.ts";
+import {Color} from "../utils/color.ts";
+import {RenderTrigger, setUpCanvas} from "../utils/setup-canvas.ts";
 import styles from "./canvas.module.scss";
 
 export const Canvas = () => {
 	const {originalImage: image} = useOriginalImage();
-	const lastImageRef = useRef<File>();
+	const lastImageRef = useRef<File>(undefined);
 	const {isRotating, setIsRotating, setTheme} = useTheme();
 	const imageContainerElementRef = useRef<HTMLDivElement>(null);
 	const imageElementRef = useRef<HTMLImageElement>(null);
 	const router = useRouter();
-	const renderTriggerRef = useRef<RenderTrigger>();
+	const renderTriggerRef = useRef<RenderTrigger>(undefined);
 	const [imageData, setImageData] = useState<ImageData>();
 	const {canvasElementRef, direction, reversed, sortBy, threshold} = useSort();
 	const [showOriginal, setShowOriginal] = useState(false);

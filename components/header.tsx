@@ -1,8 +1,9 @@
 "use client";
+
 import clsx from "clsx";
 import {usePathname} from "next/navigation";
 import styles from "./header.module.scss";
-import {Icon} from "./icon";
+import {Icon} from "./icon.tsx";
 
 export const Header = () => {
 	const pathname = usePathname();

@@ -1,7 +1,6 @@
 // Import render into the worker
 // In webpack, use `import` or `require` instead of `importScripts()`
-import {render} from "./render";
-
+import {render} from "./render.ts";
 
 let canvasElement;
 let canvasContext;

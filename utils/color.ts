@@ -20,7 +20,7 @@ export class Color {
 
 	constructor (hex: string);
 	constructor (red: number, green: number, blue: number, alpha?: number);
-	constructor (redOrHex: number | string, green: number = 0, blue: number = 0, alpha: number = 255) {
+	constructor (redOrHex: number | string, green = 0, blue = 0, alpha = 255) {
 		if (typeof redOrHex === "string") {
 			const {red, green, blue} = hexToRgb(redOrHex);
 			this.red = red;

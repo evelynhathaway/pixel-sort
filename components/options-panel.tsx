@@ -1,10 +1,10 @@
 "use client";
 
-import {useOriginalImage} from "../contexts/original-image";
-import {defaultDirection, defaultReversed, defaultSortBy, defaultThreshold, useSort} from "../contexts/sort";
-import {ColorProps} from "../utils/color";
-import {Direction} from "../utils/pixels";
-import {Button} from "./button";
+import {useOriginalImage} from "../contexts/original-image.tsx";
+import {defaultDirection, defaultReversed, defaultSortBy, defaultThreshold, useSort} from "../contexts/sort.tsx";
+import {ColorProps} from "../utils/color.ts";
+import {Direction} from "../utils/pixels.ts";
+import {Button} from "./button.tsx";
 import styles from "./options-panel.module.scss";
 
 type SortStartingFrom = "top" | "bottom" | "left" | "right";

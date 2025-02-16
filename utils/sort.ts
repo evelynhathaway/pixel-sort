@@ -1,6 +1,6 @@
-import {ColorProps} from "./color";
-import {Interval, makeIntervals, Threshold} from "./intervals";
-import {Direction, getImageDataFromPixels, getPixelsFromImageData, Pixels1D} from "./pixels";
+import {ColorProps} from "./color.ts";
+import {Interval, makeIntervals, Threshold} from "./intervals.ts";
+import {Direction, getImageDataFromPixels, getPixelsFromImageData, Pixels1D} from "./pixels.ts";
 
 export const sortPixels = (
 	pixels: Pixels1D,
@@ -22,7 +22,7 @@ export const sortImage = (
 	sortBy: ColorProps,
 	direction: Direction,
 	reverse: boolean,
-	thresholds: Array<Threshold>,
+	thresholds: Threshold[],
 ): ImageData => {
 	return getImageDataFromPixels(
 		getPixelsFromImageData(imageData, direction)

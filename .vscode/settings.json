@@ -1,0 +1,58 @@
+{
+	"editor.formatOnSave": false,
+	"eslint.format.enable": true,
+	"eslint.lintTask.enable": true,
+	// Format using ESLint on save
+	// - Source: https://eslint.style/guide/faq#how-to-auto-format-on-save
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit"
+	},
+	// Hide fixable style ESLint problems
+	// - Source: https://eslint.style/guide/faq#the-error-messages-squiggly-lines-for-code-style-are-annoying
+	"eslint.rules.customizations": [
+		{
+			"rule": "@stylistic/*",
+			"fixable": true,
+			"severity": "off"
+		}
+	],
+	"files.associations": {
+		".env": "shellscript",
+		".env.*": "shellscript",
+	},
+	"files.eol": "\n",
+	"files.insertFinalNewline": true,
+	"files.trimFinalNewlines": true,
+	"files.trimTrailingWhitespace": true,
+	"html.format.wrapAttributes": "force-expand-multiline",
+	"javascript.format.insertSpaceAfterConstructor": true,
+	"javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": false,
+	"javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+	"javascript.format.semicolons": "insert",
+	"javascript.preferences.importModuleSpecifierEnding": "js",
+	"javascript.preferences.quoteStyle": "double",
+	"typescript.format.insertSpaceAfterConstructor": true,
+	"typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": false,
+	"typescript.format.insertSpaceAfterTypeAssertion": true,
+	"typescript.format.insertSpaceBeforeFunctionParenthesis": true,
+	"typescript.format.semicolons": "insert",
+	"typescript.tsdk": "node_modules\\typescript\\lib",
+	"versionlens.suggestions.showOnStartup": true,
+	"[javascript]": {
+		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+	},
+	"[javascriptreact]": {
+		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+	},
+	"cSpell.words": [
+		"dragonfruit",
+		"RGBA"
+	],
+	"javascript.preferences.importModuleSpecifier": "relative",
+}

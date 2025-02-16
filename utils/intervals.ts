@@ -1,5 +1,5 @@
-import {Color, ColorProps} from "./color";
-import {Pixels1D} from "./pixels";
+import {Color, ColorProps} from "./color.ts";
+import {Pixels1D} from "./pixels.ts";
 
 
 export interface Threshold {
@@ -8,7 +8,7 @@ export interface Threshold {
 	max: number;
 }
 
-export const checkThresholds = (pixel: Color, thresholds: Array<Threshold>): boolean => {
+export const checkThresholds = (pixel: Color, thresholds: Threshold[]): boolean => {
 	for (const {property, min, max} of thresholds) {
 		if (pixel[property] < min || pixel[property] > max) {
 			return false;
@@ -22,8 +22,8 @@ export interface Interval {
 	pixels: Pixels1D;
 }
 
-export const makeIntervals = (pixels: Pixels1D, thresholds: Array<Threshold>): Array<Interval> => {
-	const intervals: Array<Interval> = [];
+export const makeIntervals = (pixels: Pixels1D, thresholds: Threshold[]): Interval[] => {
+	const intervals: Interval[] = [];
 	let didMeetThreshold: boolean | undefined;
 	for (const pixel of pixels) {
 		const meetsThreshold = checkThresholds(pixel, thresholds);

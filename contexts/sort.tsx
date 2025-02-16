@@ -1,8 +1,8 @@
 "use client";
 
 import React, {useContext, useRef, useState} from "react";
-import {ColorProps} from "../utils/color";
-import {Threshold} from "../utils/intervals";
+import {ColorProps} from "../utils/color.ts";
+import {Threshold} from "../utils/intervals.ts";
 
 export const defaultDirection = "vertical";
 export const defaultReversed = false;
@@ -24,7 +24,7 @@ const SortContext = React.createContext<{
 	setSortBy?: React.Dispatch<ColorProps>;
 	threshold: Threshold;
 	setThreshold?: React.Dispatch<Threshold>;
-	canvasElementRef: React.RefObject<HTMLCanvasElement>;
+	canvasElementRef: React.RefObject<HTMLCanvasElement | null>;
 }>({
 	direction: defaultDirection,
 	reversed: defaultReversed,

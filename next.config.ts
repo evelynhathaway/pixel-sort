@@ -1,9 +1,9 @@
-/** @type {import('next').NextConfig} */
-export default {
+import type {NextConfig} from "next";
+
+const nextConfig: NextConfig = {
 	reactStrictMode: true,
-	swcMinify: true,
 	poweredByHeader: false,
-	webpack: (config) => {
+	webpack: (config: {module: {rules: unknown[]}}) => {
 		config.module.rules.push({
 			test: /\.worker\.js$/,
 			loader: "worker-loader",
@@ -15,3 +15,5 @@ export default {
 		return config;
 	},
 };
+
+export default nextConfig;

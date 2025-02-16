@@ -1,7 +1,7 @@
-import {ColorProps} from "./color";
-import {Threshold} from "./intervals";
-import {Direction} from "./pixels";
-import {sortImage} from "./sort";
+import {ColorProps} from "./color.ts";
+import {Threshold} from "./intervals.ts";
+import {Direction} from "./pixels.ts";
+import {sortImage} from "./sort.ts";
 
 export const render = (
 	{imageData, sortBy, direction, reversed, thresholds, canvasElement, canvasContext}:
@@ -10,7 +10,7 @@ export const render = (
 		sortBy: ColorProps;
 		direction: Direction;
 		reversed: boolean;
-		thresholds: Array<Threshold>;
+		thresholds: Threshold[];
 		canvasElement: HTMLCanvasElement | null;
 		canvasContext: CanvasRenderingContext2D | null;
 	}

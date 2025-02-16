@@ -1,13 +1,13 @@
 import "../styles/global.scss";
-import type {Metadata} from "next";
-import {Header} from "../components/header";
-import {ThemedBody} from "../components/themed-body";
-import {TransparencyBackground} from "../components/transparency-background";
-import {OriginalImageContextProvider} from "../contexts/original-image";
-import {ThemeContextProvider} from "../contexts/theme";
-import {dragonfruit} from "../styles/palette";
+import type {Metadata, Viewport} from "next";
+import {Header} from "../components/header.tsx";
+import {ThemedBody} from "../components/themed-body.tsx";
+import {TransparencyBackground} from "../components/transparency-background.tsx";
+import {OriginalImageContextProvider} from "../contexts/original-image.tsx";
+import {ThemeContextProvider} from "../contexts/theme.tsx";
+import {dragonfruit} from "../styles/palette.ts";
 
-export const metadata = {
+export const metadata: Metadata = {
 	metadataBase: new URL("https://pixel-sort.evelyn.dev"),
 	title: "Pixel Sort",
 	description: "Liven your photos with a glitch effect",
@@ -15,9 +15,12 @@ export const metadata = {
 		siteName: "Pixel Sort",
 		type: "website",
 	},
-	themeColor: dragonfruit.get("500"),
 	manifest: "/site.webmanifest",
 } satisfies Metadata;
+
+export const viewport: Viewport = {
+	themeColor: dragonfruit.get("500"),
+};
 
 interface RootLayoutProps {
 	children: React.ReactNode;

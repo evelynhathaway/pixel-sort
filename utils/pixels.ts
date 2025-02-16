@@ -1,7 +1,7 @@
-import {Color} from "./color";
+import {Color} from "./color.ts";
 
-export type Pixels1D = Array<Color>;
-export type Pixels2D = Array<Pixels1D>;
+export type Pixels1D = Color[];
+export type Pixels2D = Pixels1D[];
 export type Direction = "horizontal" | "vertical";
 
 export const getPixelsFromImageData = (imageData: ImageData, direction: Direction): Pixels2D => {
@@ -31,7 +31,7 @@ export const getPixelsFromImageData = (imageData: ImageData, direction: Directio
 export const getImageDataFromPixels = (pixels: Pixels2D, direction: Direction): ImageData => {
 	const height = direction === "horizontal" ? pixels.length : pixels[0].length;
 	const width = direction === "horizontal" ? pixels[0].length : pixels.length;
-	const data: Array<number> = [];
+	const data: number[] = [];
 
 	for (let row = 0; row < height; row++) {
 		for (let column = 0; column < width; column++) {

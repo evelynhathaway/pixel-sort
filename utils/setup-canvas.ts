@@ -1,13 +1,13 @@
-import Worker from "./offscreen-canvas.worker";
-import {render} from "./render";
-import {sortImage} from "./sort";
+import Worker from "./offscreen-canvas.worker.js";
+import {render} from "./render.ts";
+import {sortImage} from "./sort.ts";
 
 export type RenderTrigger = (...args: Parameters<typeof sortImage>) => void;
 
 let worker: Worker;
 
 export const setUpCanvas = function (
-	{current: canvasElement}: React.RefObject<HTMLCanvasElement>,
+	{current: canvasElement}: React.RefObject<HTMLCanvasElement | null>,
 ): undefined | RenderTrigger {
 	if (!canvasElement) return;
 
@@ -27,8 +27,11 @@ export const setUpCanvas = function (
 
 	const renderHandoff: RenderTrigger = function (imageData, sortBy, direction, reversed, thresholds) {
 		// Call render function in worker or on the main thread
-		hasOffscreen ? worker.postMessage({imageData, sortBy, direction, reversed, thresholds}) :
+		if (hasOffscreen) {
+			worker.postMessage({imageData, sortBy, direction, reversed, thresholds});
+		} else {
 			render({imageData, sortBy, direction, reversed, thresholds, canvasElement, canvasContext});
+		}
 	};
 
 	return renderHandoff;
