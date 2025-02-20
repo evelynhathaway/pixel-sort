@@ -4,13 +4,44 @@
 	"start_url": "/",
 	"display": "standalone",
 	"orientation": "any",
-	"background_color": "#FFFFFF",
 	"theme_color": "#EE77B4",
+	"background_color": "#FFFFFF",
+	"user_preferences": {
+		"color_scheme": {
+			"dark": {
+				"theme_color": "#3B0822",
+				"background_color": "#3B0822"
+			},
+			"light": {
+				"theme_color": "#EE77B4",
+				"background_color": "#FFFFFF"
+			}
+		}
+	},
 	"icons": [
 		{
+			"src": "/favicon-shaped-192px.png",
+			"sizes": "192x192",
+			"type": "image/png",
+			"purpose": "any"
+		},
+		{
 			"src": "/icon.svg",
+			"sizes": "any",
 			"type": "image/svg+xml",
-			"sizes": "any"
+			"purpose": "any"
+		},
+		{
+			"src": "/favicon-maskable.svg",
+			"sizes": "any",
+			"type": "image/svg+xml",
+			"purpose": "maskable"
+		},
+		{
+			"src": "/favicon-monochrome.svg",
+			"sizes": "any",
+			"type": "image/svg+xml",
+			"purpose": "monochrome"
 		}
 	],
 	"description": "Liven your photos with a glitch effect",

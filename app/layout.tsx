@@ -19,7 +19,10 @@ export const metadata: Metadata = {
 } satisfies Metadata;
 
 export const viewport: Viewport = {
-	themeColor: dragonfruit.get("500"),
+	themeColor: [
+		{media: "(prefers-color-scheme: light)", color: dragonfruit.get("500")},
+		{media: "(prefers-color-scheme: dark)", color: dragonfruit.get("950")},
+	],
 };
 
 interface RootLayoutProps {
