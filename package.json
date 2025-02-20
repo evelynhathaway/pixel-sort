@@ -22,6 +22,7 @@
 	"type": "module",
 	"scripts": {
 		"build": "next build",
+		"check-types": "tsc --noEmit",
 		"dev": "next dev",
 		"lint": "eslint",
 		"prepare": "husky",
