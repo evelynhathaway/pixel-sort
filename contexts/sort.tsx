@@ -46,7 +46,7 @@ export const SortContextProvider = (props: SortContextProviderProps) => {
 	const canvasElementRef = useRef<HTMLCanvasElement>(null);
 
 	return (
-		<SortContext.Provider
+		<SortContext
 			value={{
 				direction,
 				setDirection,
@@ -60,7 +60,7 @@ export const SortContextProvider = (props: SortContextProviderProps) => {
 			}}
 		>
 			{children}
-		</SortContext.Provider>
+		</SortContext>
 	);
 };
 

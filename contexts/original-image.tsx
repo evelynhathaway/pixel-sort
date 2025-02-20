@@ -16,14 +16,14 @@ export const OriginalImageContextProvider = (props: OriginalImageContextProvider
 	const [originalImage, setOriginalImage] = useState<File>();
 
 	return (
-		<OriginalImageContext.Provider
+		<OriginalImageContext
 			value={{
 				originalImage,
 				setOriginalImage,
 			}}
 		>
 			{children}
-		</OriginalImageContext.Provider>
+		</OriginalImageContext>
 	);
 };
 

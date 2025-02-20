@@ -63,7 +63,7 @@ export const ThemeContextProvider = (props: ThemeContextProviderProps) => {
 	}, [isRotating]);
 
 	return (
-		<ThemeContext.Provider
+		<ThemeContext
 			value={{
 				theme,
 				setTheme,
@@ -73,7 +73,7 @@ export const ThemeContextProvider = (props: ThemeContextProviderProps) => {
 			}}
 		>
 			{children}
-		</ThemeContext.Provider>
+		</ThemeContext>
 	);
 };
 
