@@ -73,8 +73,12 @@ export const InitialSelectImage = () => {
 			</div>
 			<Button variation="promoted">
 				<span className={styles.buttonTextWrapper}>
-					<span className={clsx(styles.buttonText, isDragActive && styles.hidden)}>Select an Image</span>
-					<span className={clsx(styles.buttonText, styles.buttonTextOverlay, !isDragActive && styles.hidden)} aria-hidden>Drop the Image</span>
+					<span className={clsx(styles.buttonText, isDragActive && styles.hidden)}>
+						Select an Image
+					</span>
+					<span className={clsx(styles.buttonText, !isDragActive && styles.hidden)} aria-hidden>
+						Drop the Images
+					</span>
 				</span>
 			</Button>
 		</div>

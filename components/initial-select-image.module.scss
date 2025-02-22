@@ -46,19 +46,16 @@ $margin: 1rem;
 }
 
 .buttonTextWrapper {
-	position: relative;
+	display: grid;
+	grid-template-areas: "text";
 }
 
 .buttonText {
+	grid-area: text;
 	opacity: 1;
 	transition: opacity 0.2s ease;
 
 	&.hidden {
 		opacity: 0;
 	}
-}
-
-.buttonTextOverlay {
-	position: absolute;
-	inset: 0;
 }
