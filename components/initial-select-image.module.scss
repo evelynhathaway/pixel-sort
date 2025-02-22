@@ -17,7 +17,7 @@ $margin: 1rem;
 	transition: border 0.2s ease;
 }
 
-.isDragActive {
+.isDraggingValidFile {
 	border: $margin dashed var(--current-palette-color-scheme-400);
 }
 

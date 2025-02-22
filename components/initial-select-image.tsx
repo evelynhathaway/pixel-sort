@@ -29,14 +29,24 @@ export const InitialSelectImage = () => {
 		router.push("/sort");
 	}, [setOriginalImage, router]);
 
-	const {getRootProps, getInputProps, isDragActive} = useDropzone({
+	const {
+		getRootProps,
+		getInputProps,
+		isDragActive,
+		isDragReject,
+	} = useDropzone({
 		onDrop,
 		accept: {"image/*": []},
 		multiple: false,
 	});
 
+	// Uses negated reject instead of `isDragAccept` to fail safe on browsers that do not share the mime type before
+	// dropping
+	// - Avoids providing the visual accordance to drop when dragging multiple files or one that is not an image
+	const isDraggingValidFile = isDragActive && !isDragReject;
+
 	const {transitionInOutProps} = useTransitionInOut(
-		!isDragActive,
+		!isDraggingValidFile,
 		{
 			shown: styles.instructionsShown,
 			transitionIn: styles.instructionsTransitionIn,
@@ -45,7 +55,7 @@ export const InitialSelectImage = () => {
 	);
 
 	const {transitionHeightAutoProps} = useTransitionHeightAuto(
-		!isDragActive,
+		!isDraggingValidFile,
 		instructionsRef,
 	);
 
@@ -54,7 +64,7 @@ export const InitialSelectImage = () => {
 			{...getRootProps()}
 			className={clsx(
 				styles.initialSelectImage,
-				isDragActive && styles.isDragActive,
+				isDraggingValidFile && styles.isDraggingValidFile,
 			)}
 			tabIndex={undefined}
 			role={undefined}
@@ -73,10 +83,10 @@ export const InitialSelectImage = () => {
 			</div>
 			<Button variation="promoted">
 				<span className={styles.buttonTextWrapper}>
-					<span className={clsx(styles.buttonText, isDragActive && styles.hidden)}>
+					<span className={clsx(styles.buttonText, isDraggingValidFile && styles.hidden)}>
 						Select an Image
 					</span>
-					<span className={clsx(styles.buttonText, !isDragActive && styles.hidden)} aria-hidden>
+					<span className={clsx(styles.buttonText, !isDraggingValidFile && styles.hidden)} aria-hidden>
 						Drop the Images
 					</span>
 				</span>
