@@ -48,6 +48,7 @@
 		]
 	},
 	"dependencies": {
+		"@serwist/next": "^9.0.11",
 		"clsx": "^2.1.1",
 		"next": "15.1.7",
 		"node-vibrant": "^4.0.3",
@@ -69,6 +70,7 @@
 		"husky": "^9.1.7",
 		"lint-staged": "^15.4.3",
 		"sass": "^1.85.0",
+		"serwist": "^9.0.11",
 		"sort-package-json": "^2.14.0",
 		"typescript": "^5.7.3",
 		"worker-loader": "^3.0.8"

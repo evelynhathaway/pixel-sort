@@ -27,6 +27,10 @@ build/
 .next
 .turbo
 
+# Serwist
+public/service-worker*
+public/swe-worker*
+
 # Other
 .cache
 /*.log
