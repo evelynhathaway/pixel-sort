@@ -11,6 +11,8 @@ html {
 	--titlebar-area-y: env(titlebar-area-y, 0px);
 	--titlebar-area-width: env(titlebar-area-width, 0px);
 	--titlebar-area-height: env(titlebar-area-height, 0px);
+	// Prevent scroll to refresh, to prevent lost work
+	overscroll-behavior: contain;
 }
 
 @media (prefers-color-scheme: dark) {

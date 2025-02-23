@@ -1,7 +1,8 @@
 "use client";
 
-import React, {useContext, useRef, useState} from "react";
+import React, {useContext, useEffect, useRef, useState} from "react";
 import {ColorProps} from "../utils/color.ts";
+import {getIsTouchAndStandaloneOrMinimalWebAppOrFullscreen, politelyRequestFullscreen} from "../utils/fullscreen.ts";
 import {Threshold} from "../utils/intervals.ts";
 
 export const defaultDirection = "vertical";
@@ -44,6 +45,28 @@ export const SortContextProvider = (props: SortContextProviderProps) => {
 	const [sortBy, setSortBy] = useState<ColorProps>(defaultSortBy);
 	const [threshold, setThreshold] = useState<Threshold>(defaultThreshold);
 	const canvasElementRef = useRef<HTMLCanvasElement>(null);
+
+
+	useEffect(() => {
+		// If launched from the progressive web app, request fullscreen for sorting
+		if (getIsTouchAndStandaloneOrMinimalWebAppOrFullscreen()) {
+			void politelyRequestFullscreen();
+		}
+
+		// Request fullscreen when the progressive web app is closed and re-opened while sorting
+		const handleVisibilityChange = () => {
+			if (
+				getIsTouchAndStandaloneOrMinimalWebAppOrFullscreen()
+				&& document.visibilityState === "visible"
+			) {
+				void politelyRequestFullscreen();
+			}
+		};
+		document.addEventListener("visibilitychange", handleVisibilityChange);
+		return () => {
+			document.removeEventListener("visibilitychange", handleVisibilityChange);
+		};
+	}, []);
 
 	return (
 		<SortContext
