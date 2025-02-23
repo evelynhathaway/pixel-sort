@@ -5,8 +5,25 @@
 	background-color: var(--modal-background);
 	backdrop-filter: blur(64px);
 	box-shadow: var(--modal-elevation);
-	padding: 1.5rem;
+	padding-inline-start: 24px;
+	padding-inline-end: max(24px, env(safe-area-inset-right));
+	padding-block-start: calc(24px + env(safe-area-inset-top, 0px));
+	padding-block-end: calc(24px + env(safe-area-inset-bottom, 0px));
 	display: flex;
 	flex-direction: column;
 	border-inline-start: var(--tint);
+
+	// Add solid color to title bar area if the options panel is open and the title bar area overlaps
+	&::before {
+		content: "";
+		position: fixed;
+		inset: 0;
+		height: env(titlebar-area-height, 0);
+		background-color: var(--meta-theme-color);
+		border-inline-start: var(--tint);
+		inset-inline-start: calc(var(--edge-size) * -1);
+		// Allow dragging this entire area to move the window
+		-webkit-app-region: drag;
+		app-region: drag;
+	}
 }

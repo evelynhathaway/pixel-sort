@@ -13,6 +13,9 @@
 	max-height: 100%;
 	object-fit: contain;
 	display: block;
+	// Prevent the header icon from moving the window when dragging the image
+	-webkit-app-region: no-drag;
+	app-region: no-drag;
 }
 
 .image {

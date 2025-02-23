@@ -4,6 +4,9 @@
 .icon {
 	border-radius: 4px;
 	width: 96px;
+	// Allow dragging the icon to move the window
+	-webkit-app-region: drag;
+	app-region: drag;
 }
 
 .background,

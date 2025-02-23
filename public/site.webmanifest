@@ -3,6 +3,11 @@
 	"short_name": "Pixel Sort",
 	"start_url": "/",
 	"display": "standalone",
+	"display_override": [
+		"window-controls-overlay",
+		"standalone",
+		"minimal-ui"
+	],
 	"orientation": "any",
 	"theme_color": "#EE77B4",
 	"background_color": "#FFFFFF",

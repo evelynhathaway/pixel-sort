@@ -1,7 +1,7 @@
 .header {
 	position: fixed;
-	inset-block-start: 48px;
-	inset-inline-start: 48px;
+	inset-block-start: max(48px, env(safe-area-inset-top));
+	inset-inline-start: max(48px, env(safe-area-inset-left));
 	display: inline-flex;
 	align-items: center;
 	gap: 2rem;
@@ -15,6 +15,12 @@
 	letter-spacing: -0.05ch;
 	opacity: 1;
 	transition: opacity 0.2s ease;
+
+	&:not(.hidden) {
+		// Allow dragging the visible header text to move the window
+		-webkit-app-region: drag;
+		app-region: drag;
+	}
 }
 
 .hidden {

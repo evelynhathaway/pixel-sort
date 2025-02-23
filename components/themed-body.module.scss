@@ -3,10 +3,15 @@
 @use "../styles/palette.scss";
 
 .body {
+	--meta-theme-color: #{map.get(palette.$dragonfruit, 500)};
 	--theme-transition-duration: 0.8s;
 	--theme-transition-timing-function: ease;
 	transition: color var(--theme-transition-duration) var(--theme-transition-timing-function);
 	margin: 0;
+
+	@media (prefers-color-scheme: dark) {
+		--meta-theme-color: #{map.get(palette.$dragonfruit, 950)};
+	}
 }
 
 .isRotating {
@@ -37,12 +42,17 @@ $colorPalette in palette.$palettes {
 		0 4px 4px #{color.change(map.get($colorPalette, 950), $alpha: 0.1)};
 		--elevation-3: 0 12px 48px 12px #{color.change(map.get($colorPalette, 950), $alpha: 0.1)},
 		0 8px 12px #{color.change(map.get($colorPalette, 950), $alpha: 0.2)};
-		--tint: 2px solid rgba(255, 255, 255, 0.4);
-		--shade: 2px solid #{color.change(map.get($colorPalette, 950), $alpha: 0.2)};
+		--edge-size: 2px;
+		--tint: var(--edge-size) solid rgba(255, 255, 255, 0.4);
+		--shade: var(--edge-size) solid #{color.change(map.get($colorPalette, 950), $alpha: 0.2)};
 
 		--modal-background: #{color.change(map.get($colorPalette, 200), $alpha: 0.5)};
 		--modal-elevation: 12px 0 48px 12px #{color.change(map.get($colorPalette, 950), $alpha: 0.2)},
 		8px 0 12px #{color.change(map.get($colorPalette, 950), $alpha: 0.6)};
+
+		&:not(.isRotating) {
+			--meta-theme-color: #{map.get($colorPalette, 500)};
+		}
 
 		@media (prefers-color-scheme: dark) {
 			color: map.get($colorPalette, 100);
@@ -71,6 +81,10 @@ $colorPalette in palette.$palettes {
 			--modal-background: #{color.change(map.get($colorPalette, 850), $alpha: 0.5)};
 			--modal-elevation: 12px 0 48px 12px #{color.change(map.get($colorPalette, 50), $alpha: 0.2)},
 			8px 0 12px #{color.change(map.get($colorPalette, 50), $alpha: 0.6)};
+
+			&:not(.isRotating) {
+				--meta-theme-color: #{map.get($colorPalette, 950)};
+			}
 		}
 	}
 }

@@ -1,0 +1,33 @@
+.titleBar {
+	// Position in PWA window title bar area
+	position: fixed;
+	display: flex;
+	justify-content: space-between;
+	z-index: 1000;
+	inset-inline-start: env(titlebar-area-x, 0);
+	inset-block-start: env(titlebar-area-y, 0);
+	width: env(titlebar-area-width, 100%);
+	height: env(titlebar-area-height, 0);
+
+	// Allow dragging this entire area to move the window
+	-webkit-app-region: drag;
+	app-region: drag;
+
+	// Add rounded corners to the title bar area
+	&::before,
+	&::after {
+		content: "";
+		width: env(titlebar-area-height, 0);
+		background-color: var(--meta-theme-color);
+	}
+	&::before {
+		border-bottom-right-radius: 100%;
+		// Hide the rounded corner when there is nothing to the left of the PWA title bar area (e.g on Windows)
+		@container html style(--titlebar-area-x: 0px) {
+			opacity: 0;
+		}
+	}
+	&::after {
+		border-bottom-left-radius: 100%;
+	}
+  }

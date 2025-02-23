@@ -72,6 +72,22 @@ export const ThemeContextProvider = (props: ThemeContextProviderProps) => {
 				setIsRotating,
 			}}
 		>
+			{/*
+				Set the browser theme color when the theme changes (and not rotating)
+				- The theme rotation animation is subtle, but the browser theme color isn't animated as subtlety
+				- Changing the browser theme color causes the security origin text to appear in Chrome's standalone
+				  display mode, which is distracting if it happens every 5 seconds
+			*/}
+			<meta
+				name="theme-color"
+				media="(prefers-color-scheme: light)"
+				content={palettes[isRotating ? defaultTheme : theme].get("500")}
+			/>
+			<meta
+				name="theme-color"
+				media="(prefers-color-scheme: dark)"
+				content={palettes[isRotating ? defaultTheme : theme].get("950")}
+			/>
 			{children}
 		</ThemeContext>
 	);

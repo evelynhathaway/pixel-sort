@@ -5,6 +5,14 @@
 	box-sizing: border-box;
 }
 
+html {
+	container: html;
+	--titlebar-area-x: env(titlebar-area-x, 0px);
+	--titlebar-area-y: env(titlebar-area-y, 0px);
+	--titlebar-area-width: env(titlebar-area-width, 0px);
+	--titlebar-area-height: env(titlebar-area-height, 0px);
+}
+
 @media (prefers-color-scheme: dark) {
 	html {
 		color-scheme: dark;
