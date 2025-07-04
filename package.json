@@ -50,7 +50,7 @@
 	"dependencies": {
 		"@serwist/next": "^9.0.11",
 		"clsx": "^2.1.1",
-		"next": "15.1.7",
+		"next": "15.3.5",
 		"node-vibrant": "^4.0.3",
 		"react": "^19.0.0",
 		"react-aria": "^3.37.0",
